@@ -39,7 +39,7 @@ class sqlalchemy_es_pub(sqlalchemy_pub):
       Because the info is the only attributes copied from session factory
       to session instance.
 
-      ``meepo.signals`` monkey patched the blinker ``hashable_identity``
+      ``meepo2.signals`` monkey patched the blinker ``hashable_identity``
       func to use the ``session.info`` for session hash.
 
     * Provide session as sender when signal receivers connects.
@@ -62,7 +62,7 @@ class sqlalchemy_es_pub(sqlalchemy_pub):
     Then the ``_sp_for_a`` will only receive prepare-commit related events
     triggered by ``SessionA``.
     """
-    logger = logging.getLogger("meepo.pub.sqlalchemy_es_pub")
+    logger = logging.getLogger("meepo2.pub.sqlalchemy_es_pub")
 
     def _install(self):
         event.listen(self.session, "before_flush", self.session_update)
@@ -79,7 +79,7 @@ class sqlalchemy_es_pub(sqlalchemy_pub):
         of what's changed in this session, so the signal receiver can receive
         and record the event.
         """
-        if not hasattr(session, 'meepo_unique_id'):
+        if not hasattr(session, 'meepo2_unique_id'):
             self._session_init(session)
 
         evt = collections.defaultdict(set)
@@ -93,7 +93,7 @@ class sqlalchemy_es_pub(sqlalchemy_pub):
                 evt_name = "%s_%s" % (obj.__table__.fullname, action)
                 evt[evt_name].add(obj)
                 self.logger.debug("%s - session_prepare: %s -> %s" % (
-                    session.meepo_unique_id, evt_name, self._pk(obj)))
+                    session.meepo2_unique_id, evt_name, self._pk(obj)))
 
         # only trigger signal when event exists
         if evt:
@@ -106,12 +106,12 @@ class sqlalchemy_es_pub(sqlalchemy_pub):
         state.
         """
         # this may happen when there's nothing to commit
-        if not hasattr(session, 'meepo_unique_id'):
+        if not hasattr(session, 'meepo2_unique_id'):
             self.logger.debug("skipped - session_commit")
             return
 
         # normal session pub
-        self.logger.debug("%s - session_commit" % session.meepo_unique_id)
+        self.logger.debug("%s - session_commit" % session.meepo2_unique_id)
         self._session_pub(session)
         signal("session_commit").send(session)
         self._session_del(session)
@@ -123,11 +123,11 @@ class sqlalchemy_es_pub(sqlalchemy_pub):
         phase.
         """
         # this may happen when there's nothing to rollback
-        if not hasattr(session, 'meepo_unique_id'):
+        if not hasattr(session, 'meepo2_unique_id'):
             self.logger.debug("skipped - session_rollback")
             return
 
-        # del session meepo id after rollback
-        self.logger.debug("%s - after_rollback" % session.meepo_unique_id)
+        # del session meepo2 id after rollback
+        self.logger.debug("%s - after_rollback" % session.meepo2_unique_id)
         signal("session_rollback").send(session)
         self._session_del(session)

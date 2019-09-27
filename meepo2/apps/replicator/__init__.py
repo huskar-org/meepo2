@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Meepo Replicators based on events.
+"""Meepo2 Replicators based on events.
 """
 
 from __future__ import absolute_import
@@ -16,7 +16,7 @@ zmq_ctx = zmq.Context()
 class Replicator(object):
     """Replicator base class.
     """
-    def __init__(self, listen=None, name="meepo.replicator.zmq"):
+    def __init__(self, listen=None, name="meepo2.replicator.zmq"):
         """
         :param listen: zeromq dsn to connect, can be a list
         """

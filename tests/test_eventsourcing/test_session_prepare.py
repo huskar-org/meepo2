@@ -4,7 +4,7 @@ import pytest
 import tempfile
 import uuid
 
-from meepo.apps.eventsourcing.pub import sqlalchemy_es_pub
+from meepo2.apps.eventsourcing.pub import sqlalchemy_es_pub
 
 
 class sqlalchemy_test(sqlalchemy_es_pub):
@@ -33,7 +33,7 @@ class Obj(object):
 
 class Session(object):
     def __init__(self):
-        self.meepo_unique_id = str(uuid.uuid4())
+        self.meepo2_unique_id = str(uuid.uuid4())
 
         self.pending_write = [Obj("test1", 1), Obj('test2', 2)]
         self.pending_update = [Obj('test1', 4)]
@@ -75,7 +75,7 @@ def test_session_prepare_log(logger):
 
     a = logger["read"]().strip().split('\n')
 
-    uid = session.meepo_unique_id
+    uid = session.meepo2_unique_id
 
     assert a == [
         'DEBUG:test:{} - session_prepare: test1_write -> 1'.format(uid),

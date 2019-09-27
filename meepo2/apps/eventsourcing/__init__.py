@@ -6,7 +6,7 @@ http://martinfowler.com/eaaDev/EventSourcing.html
 
 **Simple Eventsourcing**
 
-The eventsourcing implemented in meepo is a simplified version of es, it only
+The eventsourcing implemented in meepo2 is a simplified version of es, it only
 records what has changed since a timestamp, but not the diffs.
 
 So you only get a list of primary keys when query with a timestamp::

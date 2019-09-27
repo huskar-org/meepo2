@@ -13,7 +13,7 @@ import pymysql
 import pytest
 import redis
 
-from meepo._compat import urlparse
+from meepo2._compat import urlparse
 
 
 @pytest.fixture(scope="session")
@@ -43,12 +43,12 @@ def redis_dsn(request, conf):
 def mysql_dsn(conf):
     """MySQL server dsn
 
-    This fixture will init a clean meepo_test database with a 'test' table
+    This fixture will init a clean meepo2_test database with a 'test' table
     """
     logger = logging.getLogger("fixture_mysql_dsn")
 
     dsn = conf["mysql_dsn"] if conf else \
-        "mysql+pymysql://root@localhost/meepo_test"
+        "mysql+pymysql://root@localhost/meepo2_test"
 
     # init database
     parsed = urlparse(dsn)
@@ -62,10 +62,10 @@ def mysql_dsn(conf):
     cursor = conn.cursor()
 
     conn.begin()
-    cursor.execute("DROP DATABASE IF EXISTS meepo_test")
-    cursor.execute("CREATE DATABASE meepo_test")
-    cursor.execute("DROP TABLE IF EXISTS meepo_test.test")
-    cursor.execute('''CREATE TABLE meepo_test.test (
+    cursor.execute("DROP DATABASE IF EXISTS meepo2_test")
+    cursor.execute("CREATE DATABASE meepo2_test")
+    cursor.execute("DROP TABLE IF EXISTS meepo2_test.test")
+    cursor.execute('''CREATE TABLE meepo2_test.test (
                         id INT NOT NULL AUTO_INCREMENT,
                         data VARCHAR (256) NOT NULL,
                         PRIMARY KEY (id)
@@ -86,6 +86,6 @@ def mysql_dsn(conf):
 def mock_session():
     class MockSession(object):
         def __init__(self):
-            self.meepo_unique_id = uuid.uuid4().hex
-            self.info = {"name": "mock{}".format(self.meepo_unique_id)}
+            self.meepo2_unique_id = uuid.uuid4().hex
+            self.info = {"name": "mock{}".format(self.meepo2_unique_id)}
     return MockSession()

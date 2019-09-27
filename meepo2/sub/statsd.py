@@ -12,7 +12,7 @@ from .._compat import urlparse
 from ..signals import signal
 
 
-def statsd_sub(statsd_dsn, tables, prefix="meepo.stats", rate=1):
+def statsd_sub(statsd_dsn, tables, prefix="meepo2.stats", rate=1):
     """statsd sub for simple stats aggregation on table events.
 
     This sub will send stats info to statsd daemon for counter statistics.
@@ -30,7 +30,7 @@ def statsd_sub(statsd_dsn, tables, prefix="meepo.stats", rate=1):
     :param prefix: statsd key prefix
     :param rate: statsd sample rate, default to 100%.
     """
-    logger = logging.getLogger("meepo.sub.statsd_sub")
+    logger = logging.getLogger("meepo2.sub.statsd_sub")
 
     import statsd
 

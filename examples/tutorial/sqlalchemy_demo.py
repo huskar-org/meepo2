@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 """
-meepo_examples.tutorial.sqlalchemy
+meepo2_examples.tutorial.sqlalchemy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A demo script on how to use meepo with sqlalchemy.
+A demo script on how to use meepo2 with sqlalchemy.
 """
 
 import logging
@@ -13,9 +13,9 @@ import sqlalchemy as sa
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy.ext.declarative import declarative_base
 
-from meepo.utils import setup_logger
+from meepo2.utils import setup_logger
 setup_logger()
-logger = logging.getLogger("meepo_examples.tutorial.sqlalchemy")
+logger = logging.getLogger("meepo2_examples.tutorial.sqlalchemy")
 
 Base = declarative_base()
 
@@ -65,10 +65,10 @@ def main():
     dsn = "sqlite:///sa_demo.db"
     session = session_prepare(dsn)
 
-    from meepo.pub import sqlalchemy_pub
+    from meepo2.pub import sqlalchemy_pub
     sqlalchemy_pub(session)
 
-    from meepo.sub.dummy import print_sub
+    from meepo2.sub.dummy import print_sub
     print_sub(["test"])
 
     sa_demo(session)

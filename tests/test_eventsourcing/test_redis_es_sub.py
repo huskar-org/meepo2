@@ -2,8 +2,8 @@
 
 import pytest
 
-from meepo.apps.eventsourcing.sub import redis_es_sub
-from meepo.signals import signal
+from meepo2.apps.eventsourcing.sub import redis_es_sub
+from meepo2.signals import signal
 
 
 @pytest.fixture(scope="function")

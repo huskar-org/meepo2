@@ -13,7 +13,7 @@ def print_sub(tables):
 
     :param tables: print events of tables.
     """
-    logger = logging.getLogger("meepo.sub.print_sub")
+    logger = logging.getLogger("meepo2.sub.print_sub")
     logger.info("print_sub tables: %s" % ", ".join(tables))
 
     if not isinstance(tables, (list, set)):

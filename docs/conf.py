@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Meepo documentation build configuration file, created by
+# Meepo2 documentation build configuration file, created by
 # sphinx-quickstart on Thu May 29 17:54:39 2014.
 #
 # This file is execfile()d with the current directory set to its
@@ -46,7 +46,7 @@ source_encoding = 'utf-8'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Meepo'
+project = 'Meepo2'
 copyright = '2014, lxyu'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -186,7 +186,7 @@ html_static_path = ['_static']
 # html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'meepo_doc'
+htmlhelp_basename = 'meepo2_doc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -206,7 +206,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    ('index', 'Meepo.tex', 'Meepo Documentation',
+    ('index', 'Meepo2.tex', 'Meepo2 Documentation',
      'lxyu', 'manual'),
 ]
 
@@ -236,7 +236,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'meepo', 'Meepo Documentation',
+    ('index', 'meepo2', 'Meepo2 Documentation',
      ['lxyu'], 1)
 ]
 
@@ -250,8 +250,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', 'Meepo', 'Meepo Documentation',
-     'lxyu', 'Meepo', 'Event sourcing and broadcasting for database.',
+    ('index', 'Meepo2', 'Meepo2 Documentation',
+     'lxyu', 'Meepo2', 'Event sourcing and broadcasting for database.',
      'Miscellaneous'),
 ]
 

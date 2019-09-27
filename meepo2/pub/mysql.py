@@ -14,7 +14,7 @@ The events pub flow::
                                                    |
     +--------------------+      +---------------+  |
     |                    |      |               |  |   +---------------------+
-    |        mysql       |      |   meepo.pub   |  |   |                     |
+    |        mysql       |      |   meepo2.pub   |  |   |                     |
     |                    +------>               +--+--->  table_update event |
     |  row-based binlog  |      |   mysql_pub   |  |   |                     |
     |                    |      |               |  |   +---------------------+
@@ -31,7 +31,7 @@ The events pub flow::
 from __future__ import absolute_import
 
 import logging
-logger = logging.getLogger("meepo.pub.mysql_pub")
+logger = logging.getLogger("meepo2.pub.mysql_pub")
 
 import datetime
 import random

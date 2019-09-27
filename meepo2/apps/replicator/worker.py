@@ -160,7 +160,7 @@ class WorkerPool(object):
         self._sentinel_worker.join()
 
     def start(self):
-        logger = logging.getLogger("meepo.replicator.sentinel")
+        logger = logging.getLogger("meepo2.replicator.sentinel")
 
         def _f():
             worker_map = {

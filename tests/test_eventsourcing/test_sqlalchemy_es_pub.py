@@ -10,8 +10,8 @@ import sqlalchemy as sa
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy.ext.declarative import declarative_base
 
-from meepo.apps.eventsourcing import sqlalchemy_es_pub
-from meepo.signals import signal
+from meepo2.apps.eventsourcing import sqlalchemy_es_pub
+from meepo2.signals import signal
 
 (t_writes, t_updates, t_deletes,
  s_events, s_commits, s_rollbacks) = ([] for _ in range(6))
@@ -37,13 +37,13 @@ def setup_module(module):
 
     # connect session action signal
     def test_session_prepare(session, event):
-        s_events.append({"sid": session.meepo_unique_id, "event": event})
+        s_events.append({"sid": session.meepo2_unique_id, "event": event})
 
     def test_session_commit(session):
-        s_commits.append(session.meepo_unique_id)
+        s_commits.append(session.meepo2_unique_id)
 
     def test_session_rollback(session):
-        s_rollbacks.append(session.meepo_unique_id)
+        s_rollbacks.append(session.meepo2_unique_id)
 
     signal("session_prepare").connect(test_session_prepare, weak=False)
     signal("session_commit").connect(test_session_commit, weak=False)

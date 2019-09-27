@@ -128,10 +128,10 @@ class RedisEventStore(EventStore):
         self.r = redis.StrictRedis.from_url(
             redis_dsn, socket_timeout=socket_timeout, **kwargs)
         self.ttl = ttl
-        self.logger = logging.getLogger("meepo.redis_es")
+        self.logger = logging.getLogger("meepo2.redis_es")
 
         if namespace is None:
-            self.namespace = lambda ts: "meepo:redis_es:%s" % d(ts, "%Y%m%d")
+            self.namespace = lambda ts: "meepo2:redis_es:%s" % d(ts, "%Y%m%d")
         elif isinstance(namespace, str):
             self.namespace = lambda ts: namespace
         elif callable(namespace):

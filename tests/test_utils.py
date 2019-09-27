@@ -4,7 +4,7 @@
 import datetime
 import time
 
-from meepo.utils import b, s, d
+from meepo2.utils import b, s, d
 
 
 def test_cast_bytes():

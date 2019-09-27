@@ -18,7 +18,7 @@ def zmq_sub(bind, tables, forwarder=False, green=False):
     :param forwarder: set to True if zmq pub to a forwarder device.
     :param green: weather to use a greenlet compat zmq
     """
-    logger = logging.getLogger("meepo.sub.zmq_sub")
+    logger = logging.getLogger("meepo2.sub.zmq_sub")
 
     if not isinstance(tables, (list, set)):
         raise ValueError("tables should be list or set")

@@ -22,14 +22,14 @@ dev_requires = [
 ] + install_requires
 
 
-setup(name="meepo",
-      version=__import__("meepo").__version__,
+setup(name="meepo2",
+      version=__import__("meepo2").__version__,
       description="event sourcing for databases.",
       keywords="eventsourcing event sourcing replication cache elasticsearch",
       author="Lx Yu",
       author_email="i@lxyu.net",
       packages=find_packages(exclude=['docs', 'tests']),
-      url="https://github.com/eleme/meepo",
+      url="https://github.com/huskar-org/meepo2",
       license="MIT",
       zip_safe=False,
       long_description=open("README.rst").read(),

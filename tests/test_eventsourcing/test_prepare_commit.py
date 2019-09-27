@@ -3,13 +3,13 @@
 import pytest
 import redis
 
-from meepo.apps.eventsourcing.prepare_commit import RedisPrepareCommit
+from meepo2.apps.eventsourcing.prepare_commit import RedisPrepareCommit
 
 
 @pytest.fixture(scope="module")
 def redis_pc(redis_dsn):
     pc = RedisPrepareCommit(
-        redis_dsn, strict=False, namespace="meepo.test.event_store")
+        redis_dsn, strict=False, namespace="meepo2.test.event_store")
     pc.r.flushdb()
     return pc
 
@@ -22,7 +22,7 @@ def redis_strict_pc():
     """
     redis_dsn = "redis://non_exists:0/"
     pc = RedisPrepareCommit(
-        redis_dsn, strict=True, namespace="meepo.test.event_store")
+        redis_dsn, strict=True, namespace="meepo2.test.event_store")
     return pc
 
 
@@ -33,7 +33,7 @@ def test_redis_prepare_commit_phase(mock_session, redis_pc):
 
     # test prepare phase recorded
     assert redis_pc.phase(mock_session) == "prepare"
-    assert redis_pc.prepare_info() == {mock_session.meepo_unique_id}
+    assert redis_pc.prepare_info() == {mock_session.meepo2_unique_id}
     assert redis_pc.session_info(mock_session) == event
 
     # test commit phase recorded

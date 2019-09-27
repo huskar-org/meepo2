@@ -15,7 +15,7 @@ def nano_sub(bind, tables):
     :param bind: the zmq pub socket or zmq device socket.
     :param tables: the events of tables to follow.
     """
-    logger = logging.getLogger("meepo.sub.nano_sub")
+    logger = logging.getLogger("meepo2.sub.nano_sub")
 
     from nanomsg import Socket, PUB
 

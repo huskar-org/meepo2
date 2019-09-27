@@ -8,9 +8,9 @@ logging.basicConfig(level=logging.DEBUG)
 import pymysql
 import pytest
 
-from meepo._compat import urlparse
-from meepo.pub import mysql_pub
-from meepo.signals import signal
+from meepo2._compat import urlparse
+from meepo2.pub import mysql_pub
+from meepo2.signals import signal
 
 t_writes, t_updates, t_deletes, t_binlogs = [], [], [], []
 t_raw_writes, t_raw_updates, t_raw_deletes = [], [], []
@@ -43,7 +43,7 @@ def binlog(mysql_dsn):
         "port": parsed.port or 3306,
         "user": parsed.username,
         "passwd": parsed.password,
-        "database": "meepo_test"
+        "database": "meepo2_test"
     }
     conn = pymysql.connect(**db_settings)
     cursor = conn.cursor()

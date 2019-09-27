@@ -1,19 +1,19 @@
 =====
-Meepo
+Meepo2
 =====
 
-.. image:: http://img.shields.io/travis/eleme/meepo/master.svg?style=flat
-   :target: https://travis-ci.org/eleme/meepo
+.. image:: http://img.shields.io/travis/huskar-org/meepo2/master.svg?style=flat
+   :target: https://travis-ci.org/huskar-org/meepo2
 
-.. image:: http://img.shields.io/pypi/v/meepo.svg?style=flat
-   :target: https://pypi.python.org/pypi/meepo
+.. image:: http://img.shields.io/pypi/v/meepo2.svg?style=flat
+   :target: https://pypi.python.org/pypi/meepo2
 
-.. image:: http://img.shields.io/pypi/dm/meepo.svg?style=flat
-   :target: https://pypi.python.org/pypi/meepo
+.. image:: http://img.shields.io/pypi/dm/meepo2.svg?style=flat
+   :target: https://pypi.python.org/pypi/meepo2
 
-Meepo is event sourcing and event broadcasting for databases.
+Meepo2 is event sourcing and event broadcasting for databases.
 
-Documentation: https://meepo.readthedocs.org/
+Documentation: https://meepo2.readthedocs.org/
 
 
 Installation
@@ -23,17 +23,17 @@ Installation
 
 :Requirements: **Python 2.x >= 2.7** or **Python 3.x >= 3.2** or **PyPy**
 
-To install the latest released version of Meepo::
+To install the latest released version of Meepo2::
 
-    $ pip install meepo
+    $ pip install meepo2
 
 
 Features
 ========
 
-Meepo can be used to do lots of things, including replication, eventsourcing,
+Meepo2 can be used to do lots of things, including replication, eventsourcing,
 cache refresh/invalidate, real-time analytics etc. The limit is all the tasks
-should be row-based, since meepo only gives ``table_action`` -> ``pk``
+should be row-based, since meepo2 only gives ``table_action`` -> ``pk``
 style events.
 
 * Row-based database replication.
@@ -52,5 +52,5 @@ Usage
 
 Checkout `documentation`_ and `examples/`_.
 
-.. _`documentation`: https://meepo.readthedocs.org/en/latest/
-.. _`examples/`: https://github.com/eleme/meepo/tree/develop/examples
+.. _`documentation`: https://meepo2.readthedocs.org/en/latest/
+.. _`examples/`: https://github.com/huskar-org/meepo2/tree/develop/examples

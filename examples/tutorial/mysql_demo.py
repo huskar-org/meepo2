@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 """
-meepo_examples.tutorial.mysql
+meepo2_examples.tutorial.mysql
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A demo script on how to use meepo with mysql row-based binlog.
+A demo script on how to use meepo2 with mysql row-based binlog.
 """
 
 import logging
@@ -12,11 +12,11 @@ import logging
 import click
 import pymysql
 
-from meepo.utils import setup_logger
+from meepo2.utils import setup_logger
 setup_logger()
-logger = logging.getLogger("meepo_examples.tutorial.mysql")
+logger = logging.getLogger("meepo2_examples.tutorial.mysql")
 
-from meepo._compat import urlparse
+from meepo2._compat import urlparse
 
 
 def db_prepare(dsn):
@@ -31,10 +31,10 @@ def db_prepare(dsn):
 
     cursor = conn.cursor()
     sql = """
-    DROP DATABASE IF EXISTS meepo_test;
-    CREATE DATABASE meepo_test;
-    DROP TABLE IF EXISTS meepo_test.test;
-    CREATE TABLE meepo_test.test (
+    DROP DATABASE IF EXISTS meepo2_test;
+    CREATE DATABASE meepo2_test;
+    DROP TABLE IF EXISTS meepo2_test.test;
+    CREATE TABLE meepo2_test.test (
         id INT NOT NULL AUTO_INCREMENT,
         data VARCHAR (256) NOT NULL,
         PRIMARY KEY (id)
@@ -65,12 +65,12 @@ def db_prepare(dsn):
 @click.option('-m', '--mysql_dsn')
 def main(mysql_dsn):
     # make sure the user has permission to read binlog
-    mysql_dsn = mysql_dsn or "mysql+pymysql://root@localhost/meepo_test"
+    mysql_dsn = mysql_dsn or "mysql+pymysql://root@localhost/meepo2_test"
 
-    from meepo.sub.dummy import print_sub
+    from meepo2.sub.dummy import print_sub
     print_sub(["test"])
 
-    from meepo.pub import mysql_pub
+    from meepo2.pub import mysql_pub
     mysql_pub(mysql_dsn, ["test"])
 
 
