@@ -21,6 +21,8 @@ def _monkey_patch_hashable_func():
 
     import blinker.base
     blinker.base.hashable_identity = hashable_identity
+
+
 _monkey_patch_hashable_func()
 
 

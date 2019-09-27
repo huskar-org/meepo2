@@ -75,7 +75,7 @@ def repl_db_sub(master_dsn, slave_dsn, tables):
         for col in columns:
             try:
                 val = getattr(obj, col)
-            except AttributeError as e:
+            except AttributeError:
                 continue
             setattr(s_obj, col, val)
 

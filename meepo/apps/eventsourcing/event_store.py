@@ -121,7 +121,7 @@ class RedisEventStore(EventStore):
     end
     """.split())
 
-    def __init__(self, redis_dsn, namespace=None, ttl=3600*24*3,
+    def __init__(self, redis_dsn, namespace=None, ttl=3600 * 24 * 3,
                  socket_timeout=1, **kwargs):
         super(RedisEventStore, self).__init__()
 

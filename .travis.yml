@@ -1,16 +1,15 @@
 language: python
-python: 3.4
+dist: precise
+python:
+  - "2.7"
+  - "3.4"
+  - "3.6"
+  - "pypy"
 services:
   - mysql
   - redis-server
-env:
-  - TOXENV=flake8
-  - TOXENV=py27
-  - TOXENV=py33
-  - TOXENV=py34
-  - TOXENV=pypy
 before_install:
-  - pip install tox
+  - pip install tox==1.9.2
 before_script:
   # enable row-based binlog
   - sudo touch /etc/mysql/conf.d/replication.cnf

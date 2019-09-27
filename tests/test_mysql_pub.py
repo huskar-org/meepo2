@@ -31,7 +31,7 @@ def setup_module(module):
     signal("test_delete_raw").connect(test_sg(t_raw_deletes), weak=False)
 
     # connect mysql binlog pos signal
-    signal("mysql_binlog_pos").connect(test_sg(t_binlogs),  weak=False)
+    signal("mysql_binlog_pos").connect(test_sg(t_binlogs), weak=False)
 
 
 @pytest.fixture(scope="module")

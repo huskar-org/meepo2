@@ -15,7 +15,7 @@ from .prepare_commit import RedisPrepareCommit
 
 
 def redis_es_sub(session, tables, redis_dsn, strict=False,
-                 namespace=None, ttl=3600*24*3, socket_timeout=1):
+                 namespace=None, ttl=3600 * 24 * 3, socket_timeout=1):
     """Redis EventSourcing sub.
 
     This sub should be used together with sqlalchemy_es_pub, it will
@@ -52,7 +52,7 @@ def redis_es_sub(session, tables, redis_dsn, strict=False,
             logger.error("event sourcing failed: %s" % pk)
 
     events = ("%s_%s" % (tb, action) for tb, action in
-              itertools.product(*[tables, ["write", "update",  "delete"]]))
+              itertools.product(*[tables, ["write", "update", "delete"]]))
     for event in events:
         sub_func = functools.partial(_es_event_sub, event=event)
         signal(event).connect(sub_func, weak=False)

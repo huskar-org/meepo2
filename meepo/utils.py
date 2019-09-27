@@ -51,6 +51,8 @@ def cast_bytes(s, encoding='utf8', errors='strict'):
         return s.encode(encoding, errors)
     else:
         raise TypeError("Expected unicode or bytes, got %r" % s)
+
+
 b = cast_bytes
 
 
@@ -62,6 +64,8 @@ def cast_str(s, encoding='utf8', errors='strict'):
         return s
     else:
         raise TypeError("Expected unicode or bytes, got %r" % s)
+
+
 s = cast_str
 
 
@@ -71,4 +75,6 @@ def cast_datetime(ts, fmt=None):
     if fmt:
         return dt.strftime(fmt)
     return dt
+
+
 d = cast_datetime
