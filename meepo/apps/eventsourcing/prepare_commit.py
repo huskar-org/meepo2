@@ -85,7 +85,7 @@ class RedisPrepareCommit(PrepareCommit):
     :param socket_timeout: redis socket timeout
     :param kwargs: kwargs to be passed to redis instance init func.
     """
-    def __init__(self, redis_dsn, strict=False, namespace=None, ttl=3600*24,
+    def __init__(self, redis_dsn, strict=False, namespace=None, ttl=3600 * 24,
                  socket_timeout=1, **kwargs):
         super(RedisPrepareCommit, self).__init__()
 

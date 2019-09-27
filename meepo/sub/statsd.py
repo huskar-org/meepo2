@@ -43,7 +43,7 @@ def statsd_sub(statsd_dsn, tables, prefix="meepo.stats", rate=1):
               itertools.product(*[tables, ["write", "update", "delete"]]))
     for event in events:
         signal(event).connect(
-            lambda _, e=event: c.incr(_key(*e.rsplit('_', 1)),  rate=rate),
+            lambda _, e=event: c.incr(_key(*e.rsplit('_', 1)), rate=rate),
             weak=False
         )
 

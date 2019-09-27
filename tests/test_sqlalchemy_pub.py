@@ -140,7 +140,7 @@ def test_sa_mixed_write_update_delete_and_multi_flushes(session, model_cls):
     5. commit
     """
     t_b, t_c = session.query(model_cls).\
-        filter(model_cls.data.in_(('b',  'c'))).all()
+        filter(model_cls.data.in_(('b', 'c'))).all()
     t_e = model_cls(data='e')
     session.add(t_e)
     t_b.data = "x"
