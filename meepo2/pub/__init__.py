@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Meepo's core concept is based event pubs, it follows mysql row-based binlog
+Meepo2's core concept is based event pubs, it follows mysql row-based binlog
 and sqlalchemy events system and shape them into ``table_action pk``
 format signals.
 

@@ -35,7 +35,7 @@ def redis_es_sub(session, tables, redis_dsn, strict=False,
     :param ttl: expiration time for events stored, default to 3 days.
     :param socket_timeout: redis socket timeout.
     """
-    logger = logging.getLogger("meepo.sub.redis_es_sub")
+    logger = logging.getLogger("meepo2.sub.redis_es_sub")
 
     if not isinstance(tables, (list, set)):
         raise ValueError("tables should be list or set")
@@ -74,15 +74,15 @@ def redis_es_sub(session, tables, redis_dsn, strict=False,
     return event_store, prepare_commit
 
 
-def statsd_es_sub(statsd_dsn, session, prefix="meepo.stats", rate=1):
+def statsd_es_sub(statsd_dsn, session, prefix="meepo2.stats", rate=1):
     """statsd sub for simple stats aggregation on event sourcing.
 
     This sub will send stats info to statsd daemon for counter statistics,
-    this one is different from `meepo.sub.statsd_sub` which collect stats
+    this one is different from `meepo2.sub.statsd_sub` which collect stats
     for table events, the `statsd_es_sub` only collects statsd for session
     events (prepare, commit, rollback).
 
-    You may wish to use this sub in combination of `meepo.sub.statsd_sub`
+    You may wish to use this sub in combination of `meepo2.sub.statsd_sub`
     when used in event sourcing.
 
     :param statsd_dsn: statsd server dsn
@@ -90,7 +90,7 @@ def statsd_es_sub(statsd_dsn, session, prefix="meepo.stats", rate=1):
     :param prefix: statsd key prefix
     :param rate: statsd sample rate, default to 100%.
     """
-    logger = logging.getLogger("meepo.sub.statsd_es_sub")
+    logger = logging.getLogger("meepo2.sub.statsd_es_sub")
 
     import statsd
 

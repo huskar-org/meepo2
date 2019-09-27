@@ -19,7 +19,7 @@ def setup_logger(level=None):
         },
 
         'loggers': {
-            'meepo': {
+            'meepo2': {
                 'handlers': ['console'],
                 'propagate': False,
                 'level': level or 'INFO',

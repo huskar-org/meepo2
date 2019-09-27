@@ -10,8 +10,8 @@ import sqlalchemy as sa
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy.ext.declarative import declarative_base
 
-from meepo.pub import sqlalchemy_pub
-from meepo.signals import signal
+from meepo2.pub import sqlalchemy_pub
+from meepo2.signals import signal
 
 (t_writes, t_updates, t_deletes) = ([] for _ in range(3))
 

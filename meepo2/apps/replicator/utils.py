@@ -11,7 +11,7 @@ import zmq
 
 
 def zmq_proxy(frontend, backend):
-    logger = logging.getLogger("meepo.replicator.zmq_proxy")
+    logger = logging.getLogger("meepo2.replicator.zmq_proxy")
 
     ctx, frontend_socket, backend_socket = None, None, None
 

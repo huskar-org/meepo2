@@ -11,9 +11,9 @@ import random
 
 from multiprocessing import Queue, Process, Manager
 
-from meepo.apps.replicator.worker import Worker, WorkerPool
-from meepo.apps.replicator import QueueReplicator, RqReplicator
-from meepo.utils import setup_logger
+from meepo2.apps.replicator.worker import Worker, WorkerPool
+from meepo2.apps.replicator import QueueReplicator, RqReplicator
+from meepo2.utils import setup_logger
 setup_logger("DEBUG")
 
 

@@ -10,7 +10,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.exc import SQLAlchemyError
 
-from meepo.pub import mysql_pub
+from meepo2.pub import mysql_pub
 
 
 def repl_db_sub(master_dsn, slave_dsn, tables):
@@ -19,7 +19,7 @@ def repl_db_sub(master_dsn, slave_dsn, tables):
     The function will subscribe to the event sourcing pk stream, retrive rows
     from master based pk and then update the slave.
     """
-    logger = logging.getLogger("meepo.sub.replicate_sub")
+    logger = logging.getLogger("meepo2.sub.replicate_sub")
 
     # sqlalchemy reflection
     logger.info("reflecting master database: {}".format(master_dsn))

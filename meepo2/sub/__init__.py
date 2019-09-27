@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Meepo sub is where all the imagination comes true, all subs implemented here
+Meepo2 sub is where all the imagination comes true, all subs implemented here
 are only some simple demos. Customize your own sub for the real power.
 
 To make use of a signal, just create a function that accepts a primary key.

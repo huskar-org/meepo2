@@ -5,7 +5,7 @@ Prepare Commit also known as Two-Phase Commit, for basic concept about it,
 refer to http://en.wikipedia.org/wiki/Two-phase_commit_protocol
 
 
-The two phase commit feature implemented in meepo is used to make sure event
+The two phase commit feature implemented in meepo2 is used to make sure event
 100% reliably recorded in eventsourcing, and it's not a strict traditional
 two-phase commit.
 
@@ -54,14 +54,14 @@ def _redis_strict_pc(func):
     def wrapper(self, session, *args, **kwargs):
         try:
             func(self, session, *args, **kwargs)
-            self.logger.debug("%s -> %s" % (session.meepo_unique_id, phase))
+            self.logger.debug("%s -> %s" % (session.meepo2_unique_id, phase))
             return True
         except Exception as e:
             if self.strict:
                 raise
             if isinstance(e, redis.ConnectionError):
                 self.logger.warn("redis connection error in %s: %s" % (
-                    phase, session.meepo_unique_id))
+                    phase, session.meepo2_unique_id))
             else:
                 self.logger.exception(e)
             return False
@@ -93,21 +93,21 @@ class RedisPrepareCommit(PrepareCommit):
             redis_dsn, socket_timeout=socket_timeout, **kwargs)
         self.strict = strict
         self.ttl = ttl
-        self.logger = logging.getLogger("meepo.prepare_commit.redis_pc")
+        self.logger = logging.getLogger("meepo2.prepare_commit.redis_pc")
 
         if namespace is None:
-            self.namespace = lambda ts: "meepo:redis_pc:%s" % d(ts, "%Y%m%d")
+            self.namespace = lambda ts: "meepo2:redis_pc:%s" % d(ts, "%Y%m%d")
         elif isinstance(namespace, str):
             self.namespace = lambda ts: namespace
         elif callable(namespace):
             self.namespace = namespace
 
     def _keygen(self, session):
-        if not hasattr(session, "meepo_prepare_ts"):
-            session.meepo_prepare_ts = int(time.time())
-        prefix = self.namespace(session.meepo_prepare_ts)
+        if not hasattr(session, "meepo2_prepare_ts"):
+            session.meepo2_prepare_ts = int(time.time())
+        prefix = self.namespace(session.meepo2_prepare_ts)
         sp_key = "%s:session_prepare" % prefix
-        sp_hkey = "%s:%s" % (sp_key, session.meepo_unique_id)
+        sp_hkey = "%s:%s" % (sp_key, session.meepo2_unique_id)
         return sp_key, sp_hkey
 
     def phase(self, session):
@@ -117,7 +117,7 @@ class RedisPrepareCommit(PrepareCommit):
         :return: phase "prepare" or "commit"
         """
         sp_key, _ = self._keygen(session)
-        if self.r.sismember(sp_key, session.meepo_unique_id):
+        if self.r.sismember(sp_key, session.meepo2_unique_id):
             return "prepare"
         else:
             return "commit"
@@ -149,7 +149,7 @@ class RedisPrepareCommit(PrepareCommit):
             k: pickle.dumps({_get_dump_value(obj) for obj in objs})
             for k, objs in event.items()}
         with self.r.pipeline(transaction=False) as p:
-            p.sadd(sp_key, session.meepo_unique_id)
+            p.sadd(sp_key, session.meepo2_unique_id)
             p.hmset(sp_hkey, pickled_event)
             p.execute()
 
@@ -161,7 +161,7 @@ class RedisPrepareCommit(PrepareCommit):
         """
         sp_key, sp_hkey = self._keygen(session)
         with self.r.pipeline(transaction=False) as p:
-            p.srem(sp_key, session.meepo_unique_id)
+            p.srem(sp_key, session.meepo2_unique_id)
             p.expire(sp_hkey, 60 * 60)
             p.execute()
     # we don't need to specially deal with rollback in this phase

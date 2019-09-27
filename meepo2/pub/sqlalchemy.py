@@ -8,7 +8,7 @@ The events pub flow::
 
     +------------------+         +-----------------------+
     |                  |         |                       |
-    |    meepo.pub     |         |      before_flush     |
+    |    meepo2.pub     |         |      before_flush     |
     |                  |    +---->                       |
     |  sqlalchemy_pub  |    |    |  record model states  |
     |                  |    |    |                       |
@@ -116,7 +116,7 @@ class sqlalchemy_pub(object):
             session.query(Test).filter(Test.data == 'x').delete()
     """
 
-    logger = logging.getLogger("meepo.pub.sqlalchemy_pub")
+    logger = logging.getLogger("meepo2.pub.sqlalchemy_pub")
 
     def __init__(self, session, tables=None):
         self.session = session
@@ -144,7 +144,7 @@ class sqlalchemy_pub(object):
         return pk_values
 
     def _session_init(self, session):
-        if hasattr(session, "meepo_unique_id"):
+        if hasattr(session, "meepo2_unique_id"):
             self.logger.debug("skipped - session_init")
             return
 
@@ -152,12 +152,12 @@ class sqlalchemy_pub(object):
             attr = "pending_%s" % action
             if not hasattr(session, attr):
                 setattr(session, attr, set())
-        session.meepo_unique_id = uuid.uuid4().hex
-        self.logger.debug("%s - session_init" % session.meepo_unique_id)
+        session.meepo2_unique_id = uuid.uuid4().hex
+        self.logger.debug("%s - session_init" % session.meepo2_unique_id)
 
     def _session_del(self, session):
-        self.logger.debug("%s - session_del" % session.meepo_unique_id)
-        del session.meepo_unique_id
+        self.logger.debug("%s - session_del" % session.meepo2_unique_id)
+        del session.meepo2_unique_id
         del session.pending_write
         del session.pending_update
         del session.pending_delete
@@ -185,7 +185,7 @@ class sqlalchemy_pub(object):
                 sg.send(pk)
                 sg_raw.send(obj)
                 self.logger.debug("%s - session_pub: %s -> %s" % (
-                    session.meepo_unique_id, sg_name, pk))
+                    session.meepo2_unique_id, sg_name, pk))
 
         for obj in session.pending_write:
             _pub(obj, action="write")
@@ -206,7 +206,7 @@ class sqlalchemy_pub(object):
         session.pending_write |= set(session.new)
         session.pending_update |= set(session.dirty)
         session.pending_delete |= set(session.deleted)
-        self.logger.debug("%s - session_update" % session.meepo_unique_id)
+        self.logger.debug("%s - session_update" % session.meepo2_unique_id)
 
     def session_commit(self, session):
         """Pub the events after the session committed.
@@ -214,7 +214,7 @@ class sqlalchemy_pub(object):
         This method should be linked to sqlalchemy "after_commit" event.
         """
         # this may happen when there's nothing to commit
-        if not hasattr(session, 'meepo_unique_id'):
+        if not hasattr(session, 'meepo2_unique_id'):
             self.logger.debug("skipped - session_commit")
             return
 
