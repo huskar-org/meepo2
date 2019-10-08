@@ -1,6 +1,6 @@
-=====
+======
 Meepo2
-=====
+======
 
 .. image:: http://img.shields.io/travis/huskar-org/meepo2/master.svg?style=flat
    :target: https://travis-ci.org/huskar-org/meepo2
@@ -18,8 +18,6 @@ Documentation: https://meepo2.readthedocs.org/
 
 Installation
 ============
-
-.. highlight:: bash
 
 :Requirements: **Python 2.x >= 2.7** or **Python 3.x >= 3.2** or **PyPy**
 
